@@ -7,5 +7,5 @@ func _on_Mushroom_Pickup_body_entered(body):
 		print("player picking up shrooms")
 		pickedUp = true
 		visible = false
-		WorldShifter.numberOfShrooms += 4
+		WorldShifter.mushroomPickedUp = true
 	
