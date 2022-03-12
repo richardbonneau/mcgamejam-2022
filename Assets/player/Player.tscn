@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/player/grab/Grab.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RawImport/Items/shroom.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://Assets/player/Shrooms.gd" type="Script" id=4]
 [ext_resource path="res://Assets/player/footstep_sound/FootstepSound.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -21,6 +23,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 [node name="FootstepSound" parent="Head/Camera" instance=ExtResource( 6 )]
 
 [node name="Grab" parent="Head/Camera" instance=ExtResource( 2 )]
+
+[node name="Shrooms" type="Spatial" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.451301, -1.22955 )
+visible = false
+script = ExtResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Head/Camera/Shrooms"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.214642, -0.163222, 0.279003 )
+mesh = ExtResource( 3 )
+material/0 = null
+material/1 = null
+material/2 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.875, 0 )

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://RawImport/Items/shroom.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://Ressources/WinTileSparkles.tres" type="Material" id=2]
+[ext_resource path="res://PuzzleElements/Mushroom Pickup.gd" type="Script" id=3]
+
+[sub_resource type="QuadMesh" id=8]
+material = ExtResource( 2 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 1, 1.72689, 1 )
+
+[node name="Mushroom Pickup" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.212, -0.0210469, 17.1101 )
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.19483, 0.0451714, 0.000881011, -0.0451767, 0.194826, 0.00139296, -0.000543612, -0.00155596, 0.199993, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.120307, 0, -0.159769, 0.0237174, 0.197784, 0.0178594, 0.157999, -0.0296896, 0.118974, -0.195309, -0.033622, 0.390364 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../MeshInstance")
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 0.118904, -0.0304626, -0.157905, 0.0183244, 0.197666, -0.0243349, 0.159769, 0, 0.120307, 0.336802, -0.033622, 0.394955 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../MeshInstance")
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( 0.120307, 0, -0.159769, 0, 0.2, 0, 0.159769, 0, 0.120307, 0.336802, -0.033622, -0.336828 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../MeshInstance")
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="CPUParticles2" type="CPUParticles" parent="."]
+amount = 12
+preprocess = 1.0
+speed_scale = 0.4
+randomness = 0.1
+lifetime_randomness = 0.5
+mesh = SubResource( 8 )
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 10, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 9 )
+
+[connection signal="body_entered" from="." to="." method="_on_Mushroom_Pickup_body_entered"]
