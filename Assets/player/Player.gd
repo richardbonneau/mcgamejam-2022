@@ -26,12 +26,25 @@ var can_jump = true
 var crouched = false
 var can_crouch = true
 
+onready var isMushroomWorld = false
+
 # Data:
 var player_speed = 0
 var falling_velocity = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta):
+	if(WorldShifter.isMushroomWorld != isMushroomWorld):
+		set_collision_mask_bit(0, !WorldShifter.isMushroomWorld)
+		set_collision_layer_bit(0, !WorldShifter.isMushroomWorld)
+		
+		set_collision_mask_bit(1, WorldShifter.isMushroomWorld)
+		set_collision_layer_bit(1, WorldShifter.isMushroomWorld)
+		
+		isMushroomWorld = WorldShifter.isMushroomWorld
+
 
 func _input(event):
 	# Look with the mouse

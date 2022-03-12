@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/ShiftingAsset.gd" type="Script" id=2]
@@ -7,6 +7,12 @@
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 10.2558, 0.269753, 6.88147 )
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="CylinderMesh" id=4]
+
+[sub_resource type="BoxShape" id=5]
 
 [node name="Main" type="Node"]
 
@@ -20,21 +26,45 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
 transform = Transform( 0.1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 1.4696, 0.0769486 )
 shape = SubResource( 1 )
 
 [node name="Tree" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.17745, 2.40401, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.903916, -7.52243 )
 script = ExtResource( 2 )
 
 [node name="World1" type="Spatial" parent="Tree"]
 
-[node name="CSGPolygon" type="CSGPolygon" parent="Tree/World1"]
+[node name="MeshInstance" type="MeshInstance" parent="Tree/World1"]
+mesh = SubResource( 3 )
+material/0 = null
 
 [node name="World2" type="Spatial" parent="Tree"]
 visible = false
 
-[node name="CSGPolygon" type="CSGPolygon" parent="Tree/World2"]
-polygon = PoolVector2Array( 0, 0, 0.230819, 0.71008, 1.00724, 0.570563, 0.348525, 0.488685 )
+[node name="MeshInstance" type="MeshInstance" parent="Tree/World2"]
+mesh = SubResource( 4 )
+skeleton = NodePath("../../World2")
+material/0 = null
+
+[node name="Tree2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62447, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="World1" type="Spatial" parent="Tree2"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Tree2/World1"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Tree2/World1/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Tree2/World1/MeshInstance/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="World2" type="Spatial" parent="Tree2"]
+visible = false
