@@ -2,6 +2,9 @@ extends Spatial
 
 onready var numberOfShrooms = 0
 
+func _ready():
+	WorldShifter.defineShroomObj(self)
+
 func _process(delta):
 	if(WorldShifter.numberOfShrooms != numberOfShrooms):
 		# if player has more than one shroom, show them in the hands

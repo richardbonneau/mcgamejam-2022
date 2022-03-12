@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/ShiftingAsset.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Ressources/Meshes/Level1/level1.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://Decor/Tree1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://PuzzleElements/Bridge.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Main/Label.gd" type="Script" id=7]
+
+[sub_resource type="Theme" id=13]
 
 [sub_resource type="CubeMesh" id=2]
 
@@ -41,11 +44,39 @@ extents = Vector3( 26.4039, 3.36491, 1 )
 
 [node name="Main" type="Node"]
 
+[node name="UI" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -36.0
+margin_right = 36.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="UI"]
+margin_right = 40.0
+margin_bottom = 14.0
+theme = SubResource( 13 )
+align = 1
+script = ExtResource( 7 )
+
+[node name="MushTimer" type="Timer" parent="UI/Label"]
+wait_time = 10.0
+
+[node name="RecoveryTimer" type="Timer" parent="UI/Label"]
+wait_time = 20.0
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53062, 1.11346, 18.4831 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 18.8725, 0, 0, 0, 1, 0, 0, 0, 15.0253, 0, -1.6788, 0 )
+transform = Transform( 18.8725, 0, 0, 0, 1, 0, 0, 0, 15.0253, 0, -1.61504, 7.38018 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
 material/0 = null
@@ -169,3 +200,6 @@ transform = Transform( -0.107167, 0, 0.994241, 0, 1, 0, -0.994241, 0, -0.107167,
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.69899, 7.2512 )
 
 [node name="Mushroom Pickup" parent="." instance=ExtResource( 3 )]
+
+[connection signal="timeout" from="UI/Label/MushTimer" to="UI/Label" method="_on_MushTimer_timeout"]
+[connection signal="timeout" from="UI/Label/RecoveryTimer" to="UI/Label" method="_on_RecoveryTimer_timeout"]
