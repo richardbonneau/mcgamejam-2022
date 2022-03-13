@@ -21,6 +21,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 environment = ExtResource( 5 )
+current = true
+far = 125.0
 script = ExtResource( 2 )
 
 [node name="FootstepSound" parent="Head/Camera" instance=ExtResource( 6 )]

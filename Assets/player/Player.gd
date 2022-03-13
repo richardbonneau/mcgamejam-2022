@@ -34,6 +34,7 @@ var falling_velocity = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	WorldShifter.definePlayer(self)
 
 func _process(delta):
 	if(WorldShifter.isMushroomWorld != isMushroomWorld):

@@ -7,11 +7,15 @@ var shroomObj
 var statusUI
 var mushTimer
 var recoveryTimer
+var player
 
 var camera
 onready var normalEnv = preload("res://Ressources/NormalEnv.tres")
 onready var mushEnv = preload("res://Ressources/MushEnv.tres")
 
+func definePlayer(p):
+	player = p
+	
 func defineShroomObj(shroom):
 	shroomObj = shroom
 
