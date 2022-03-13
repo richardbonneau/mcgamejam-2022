@@ -12,6 +12,8 @@ var player
 var camera
 onready var normalEnv = preload("res://Ressources/NormalEnv.tres")
 onready var mushEnv = preload("res://Ressources/MushEnv.tres")
+var takingMushroomsSound
+var recoverySound
 
 func definePlayer(p):
 	player = p
@@ -26,6 +28,9 @@ func defineStatusUI(ui):
 
 func defineCamera(cam):
 	camera = cam
+	takingMushroomsSound = cam.get_child(0)
+	recoverySound = cam.get_child(1)
+	
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") and !onCooldown and mushroomPickedUp: 
@@ -36,6 +41,7 @@ func _input(event):
 		mushTimer.start()
 		camera.environment = mushEnv
 		onCooldown = true
+		takingMushroomsSound.play()
 
 func mushTimerOver():
 	print("mushTimerOver")
@@ -45,6 +51,7 @@ func mushTimerOver():
 	mushTimer.stop()
 	recoveryTimer.start()
 	isMushroomWorld = false
+	recoverySound.play()
 
 func recoveryTimerOver():
 	print("recoveryTimerOver")

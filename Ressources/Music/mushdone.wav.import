@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mushdone.wav-1d51f1dae4f2d5a60f5569fc712132ab.sample"
+
+[deps]
+
+source_file="res://Ressources/Music/mushdone.wav"
+dest_files=[ "res://.import/mushdone.wav-1d51f1dae4f2d5a60f5569fc712132ab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

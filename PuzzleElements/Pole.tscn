@@ -3,6 +3,7 @@
 [ext_resource path="res://Ressources/Meshes/Level1/pole.tres" type="ArrayMesh" id=1]
 
 [sub_resource type="BoxShape" id=16]
+extents = Vector3( 1, 2.15994, 1 )
 
 [node name="Pole" type="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.86994, -61 )
